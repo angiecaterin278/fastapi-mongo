@@ -1,4 +1,7 @@
+from fastapi import FastAPI
 from pymongo import MongoClient
+
+app = FastAPI()  # 👈 solo para que Render funcione
 
 client = MongoClient("mongodb+srv://angie28_db:Angie123@cluster0.i2jqedd.mongodb.net/?retryWrites=true&w=majority")
 
