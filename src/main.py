@@ -1,13 +1,21 @@
 from fastapi import FastAPI
 from pymongo import MongoClient
 
-app = FastAPI()  # 👈 solo para que Render funcione
+app = FastAPI()
 
+# 🔌 Conexión a Mongo
 client = MongoClient("mongodb+srv://angie28_db:Angie123@cluster0.i2jqedd.mongodb.net/?retryWrites=true&w=majority")
 
 db = client["Angie"]
 coleccion = db["Usuarios"]
 
+# ✅ Endpoint mínimo solo para que Render no falle
+@app.get("/")
+def health_check():
+    return {"status": "ok", "mensaje": "Servicio activo (solo consumo interno)"}
+
+
+# 🔒 FUNCIONES INTERNAS (NO endpoints)
 
 def filtrar_usuarios(nombre: str, edad: int, correo: str):
     filtros = {
